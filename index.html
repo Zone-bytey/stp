@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Practical Projects</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Software Testing Practicals</h1>
+        <nav>
+            <ul>
+                <li><a href="#practical1">Practical 1</a></li>
+                <li><a href="#practical2">Practical 2</a></li>
+                <li><a href="#practical3">Practical 3</a></li>
+                <li><a href="#practical4">Practical 4</a></li>
+                <li><a href="#practical5">Practical 5</a></li>
+                <li><a href="#practical6">Practical 6</a></li>
+            </ul>
+        </nav>
+        <div class="project" id="prectical1">
+            <h2>Practical 1: Downloading & Installing Selenium Webdriver</h2>
+            <p>A brief description of your project.</p>
+            <div class="code-container">
+                <button class="copy-button">Copy</button>
+                <pre><code class="language-python">
+1. Python Setup (If you don't have it already)
+   - Download: Head over to https://www.python.org/downloads/ and grab the appropriate installer for your operating system (Windows, macOS, or Linux).
+   - Installation: Run the installer. Be sure to check the box that says "Add Python to PATH" during the installation process. This lets you easily use Python from your command line or terminal.
+
+2. Selenium WebDriver Installation
+   - Open Your Terminal/Command Prompt:
+     - Windows: Search for "cmd" in your start menu.
+     - macOS: Open "Terminal" using Spotlight search.
+     - Linux: You're likely familiar with your terminal.
+   - Use pip: Type the following command and press Enter:
+     ```bash
+     pip install selenium
+     ```
+     This fetches Selenium and sets it up within your Python environment.
+
+3. Browser Driver Setup
+   - Choose Your Browser: Decide which browser you'll primarily use for testing (Chrome, Firefox, Edge, etc.).
+   - Download the Driver:
+     - Chrome: https://chromedriver.chromium.org/downloads
+     - Firefox (GeckoDriver): https://github.com/mozilla/geckodriver/releases
+     - Edge: https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/
+     - Important: Make sure the driver version matches your browser version for the best compatibility.
+   - Placement:
+     - Option 1 (Recommended): Place the downloaded driver executable (e.g., chromedriver.exe) in a directory that's already in your system's PATH environment variable. This way, Selenium can find it automatically.
+     - Option 2: Place the driver in a specific folder, and then provide the path to that folder in your Python code when you initialize your WebDriver.
+
+You're Ready!
+        </code></pre>
+            </div>
+        </div>
+
+        <div class="project" id="practical2">
+            <h2>Practical 2:Launch any E-commerce website and print message on a screen using Selenium Webdriver.</h2>
+            <p>A brief description of your project.</p>
+            <div class="code-container">
+                <button class="copy-button">Copy</button>
+                <pre><code class="language-python">
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.alert import Alert
+import time
+
+# Start a WebDriver session (assuming Chrome driver here)
+driver = webdriver.Chrome()
+
+# Navigate to Amazon.com
+driver.get("https://www.amazon.com/")
+
+# Show an alert message when the website is opened
+alert = Alert(driver)
+alert_text = "Amazon website opened successfully!"
+driver.execute_script(f"alert('{alert_text}');")
+
+# Wait for a few seconds to see the alert
+time.sleep(5)
+
+# Accept the alert
+alert.accept()
+
+# Print a message indicating the action taken
+print("Navigated to the first product page.")
+
+# Close the WebDriver session
+driver.quit()
+        </code></pre>
+            </div>
+        </div>
+
+        <div class="project" id="practical3"> 
+            <h2>Practical 3:Refreshing WebPagewhile Automation Testing With Selenium Webdriver.</h2>
+            <p>A brief description of your project.</p>
+            <div class="code-container">
+                <button class="copy-button">Copy</button>
+                <pre><code class="language-python">
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+import time
+
+# Set up the WebDriver (e.g., Chrome)
+driver = webdriver.Chrome()
+
+# Open a webpage
+driver.get('https://www.w3schools.com/')
+
+# Wait for the page to load completely
+time.sleep(3)
+
+# Refresh the webpage
+driver.refresh()
+
+# Alternatively, you can use JavaScript to refresh the page
+driver.execute_script("location.reload()")
+
+# Wait for the page to load completely after refresh
+time.sleep(3)
+
+# Close the browser
+driver.quit()
+        </code></pre>
+            </div>
+        </div>
+
+        <div class="project" id="practical4">
+            <h2>Practical 4:Working with different Web Browsers using Selenium Webdriver.</h2>
+            <p>A brief description of your project.</p>
+            <div class="code-container">
+                <button class="copy-button">Copy</button>
+                <pre><code class="language-python">
+from selenium import webdriver
+
+# Open Firefox browser
+driver = webdriver.Firefox()
+driver.get("https://www.javatpoint.com/")
+
+# Open Chrome browser
+chrome_options = webdriver.ChromeOptions()
+driver = webdriver.Chrome()
+driver.get("https://www.javatpoint.com/")
+
+# Open Safari browser (on MacOS)
+driver = webdriver.Edge()
+driver.get("https://www.javatpoint.com/")
+
+# Close the browser
+driver.quit()
+        </code></pre>
+            </div>
+        </div>
+
+        <div class="project" id="practical5">
+            <h2>Practical 5:Handling following controls and events using Selenium Web driver. Controls: Drop down, File upload, Alert and PopUps,
+                multiple windows. Mouse Events: Mouse Hover , Mouse Right click, Mouse Double Click and Drag and Drop.</h2>
+            <p>A brief description of your project.</p>
+            <div class="code-container">
+                <button class="copy-button">Copy</button>
+                <pre><code class="language-python">
+from selenium import webdriver
+from selenium.webdriver.support.ui import Select
+import time
+
+# Initialize the WebDriver
+driver = webdriver.Chrome()
+
+# Handling Drop-down
+def handle_dropdown():
+    try:
+        # Open the target web page
+        driver.get('https://www.amazon.in/Yakuza-Blue-Electric-Scooty-Lead/dp/B0CNRYQ9BK')
+        dropdown = Select(driver.find_element('id', 'searchDropdownBox'))
+        dropdown.select_by_visible_text('Gift Cards')  # Change 'Gift Cards' to the actual text of the dropdown option
+        print("Dropdown handled successfully.")
+    except Exception as e:
+        print(f"Error handling dropdown: {e}")
+
+# Handling File Upload
+def handle_file_upload():
+    try:
+        driver.get('https://www.w3schools.com/howto/howto_html_file_upload_button.asp')
+        file_input = driver.find_element('id', 'myFile')
+        file_input.send_keys('report.md')  # Change to your file path
+        # Optionally click the submit button if needed
+        # driver.find_element('xpath', '//input[@type="submit"]').click()
+        print("File upload handled successfully.")
+    except Exception as e:
+        print(f"Error handling file upload: {e}")
+
+# Handling Alerts
+def handle_alert():
+    try:
+        driver.get('https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_alert')
+        driver.switch_to.frame("iframeResult")
+        driver.find_element('xpath', '//button[contains(text(),"Try it")]').click()
+        alert = driver.switch_to.alert
+        time.sleep(3)
+        alert.accept()
+        driver.switch_to.default_content()
+        print("Alert handled successfully.")
+    except Exception as e:
+        print(f"Error handling alert: {e}")
+
+# Handling Pop-ups
+def handle_popups():
+    try:
+        driver.get('https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_win_open')
+        driver.switch_to.frame("iframeResult")
+        driver.find_element('xpath', '//button[contains(text(),"Try it")]').click()
+        main_window = driver.current_window_handle
+        all_windows = driver.window_handles
+        for window in all_windows:
+            if window != main_window:
+                driver.switch_to.window(window)
+                break
+        # Perform actions in the new window
+        time.sleep(5)  # Just to keep the new window open for a while
+        driver.close()
+        driver.switch_to.window(main_window)
+        print("Pop-up handled successfully.")
+    except Exception as e:
+        print(f"Error handling popups: {e}")
+
+# Run the handlers one by one
+handle_dropdown()
+time.sleep(5)  # Pause to see the result
+
+handle_file_upload()
+time.sleep(5)  # Pause to see the result
+
+handle_alert()
+time.sleep(5)  # Pause to see the result
+
+handle_popups()
+time.sleep(5)  # Pause to see the result
+
+# Close the browser
+driver.quit()
+        </code></pre>
+            </div>
+        </div>
+
+        <div class="project" id="practical6">
+            <h2>Practical 6:Working with implicit Wait, Explicit Wait and Fluent Wait using Selenium.</h2>
+            <p>A brief description of your project.</p>
+            <div class="code-container">
+                <button class="copy-button">Copy</button>
+                <pre><code class="language-python">
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+def implicit_wait_example(driver):
+    # Set implicit wait time
+    driver.implicitly_wait(10)
+    driver.get("https://www.google.com")
+    print("Current URL (Implicit Wait):", driver.current_url)
+    try:
+        element = driver.find_element(By.NAME, "Store")  # Google's search box
+        print("Element found using implicit wait")
+    except :
+        print("Element not found using implicit wait")
+
+def explicit_wait_example(driver):
+    driver.get("https://www.google.com")
+    print("Current URL (Explicit Wait):", driver.current_url)
+    try:
+        # Set explicit wait time
+        element = WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.NAME, "Gmail"))  # Google's search box
+        )
+        print("Element found using explicit wait")
+    except Exception as e:
+        print("Element not found using explicit wait:", e)
+
+def fluent_wait_example(driver):
+    driver.get("https://www.google.com")
+    print("Current URL (Fluent Wait):", driver.current_url)
+    try:
+        # Set fluent wait time with polling interval and ignoring specific exception
+        fluent_wait = WebDriverWait(driver, 10, poll_frequency=1)
+        element = fluent_wait.until(
+            EC.presence_of_element_located((By.NAME, "Images"))  # Google's search box
+        )
+        print("Element found using fluent wait")
+    except Exception as e:
+        print("Element not found using fluent wait:", e)
+
+if _name_ == "_main_":
+    # Set up the driver (ensure you have the correct path to your chromedriver)
+    driver = webdriver.Chrome()
+
+    # Run examples
+    implicit_wait_example(driver)
+    explicit_wait_example(driver)
+    fluent_wait_example(driver)
+
+    # Quit the driver
+    driver.quit()
+        </code></pre>
+            </div>
+        </div>
+
+    </div>
+
+    <button id="backToTop" onclick="scrollToTop()">Back to Top</button>
+    <script src="script.js"></script>
+</body>
+
+</html>
