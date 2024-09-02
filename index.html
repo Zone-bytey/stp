@@ -255,6 +255,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import NoSuchElementException
 
 def implicit_wait_example(driver):
     # Set implicit wait time
@@ -262,9 +263,9 @@ def implicit_wait_example(driver):
     driver.get("https://www.google.com")
     print("Current URL (Implicit Wait):", driver.current_url)
     try:
-        element = driver.find_element(By.NAME, "Store")  # Google's search box
+        element = driver.find_element(By.NAME, "q")  # Google's search box (name="q")
         print("Element found using implicit wait")
-    except :
+    except NoSuchElementException:
         print("Element not found using implicit wait")
 
 def explicit_wait_example(driver):
@@ -273,7 +274,7 @@ def explicit_wait_example(driver):
     try:
         # Set explicit wait time
         element = WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.NAME, "Gmail"))  # Google's search box
+            EC.presence_of_element_located((By.LINK_TEXT, "Gmail")) 
         )
         print("Element found using explicit wait")
     except Exception as e:
@@ -283,17 +284,17 @@ def fluent_wait_example(driver):
     driver.get("https://www.google.com")
     print("Current URL (Fluent Wait):", driver.current_url)
     try:
-        # Set fluent wait time with polling interval and ignoring specific exception
-        fluent_wait = WebDriverWait(driver, 10, poll_frequency=1)
+        # Set fluent wait time with polling interval and ignoring NoSuchElementException
+        fluent_wait = WebDriverWait(driver, 10, poll_frequency=1, ignored_exceptions=[NoSuchElementException])
         element = fluent_wait.until(
-            EC.presence_of_element_located((By.NAME, "Images"))  # Google's search box
+            EC.presence_of_element_located((By.LINK_TEXT, "Images"))
         )
         print("Element found using fluent wait")
     except Exception as e:
         print("Element not found using fluent wait:", e)
 
-if _name_ == "_main_":
-    # Set up the driver (ensure you have the correct path to your chromedriver)
+if __name__ == "__main__":  # Corrected typo
+    # Set up the driver 
     driver = webdriver.Chrome()
 
     # Run examples
@@ -302,7 +303,7 @@ if _name_ == "_main_":
     fluent_wait_example(driver)
 
     # Quit the driver
-    driver.quit()
+    driver.quit()
         </code></pre>
             </div>
         </div>
